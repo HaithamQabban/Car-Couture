@@ -205,76 +205,59 @@
             margin-right: 15px;
         }
 
-        @media (max-width: 1200px) {
-            article {
-                margin-left: 50px;
-            }
-
-            img {
-                max-width: 70%;
-            }
-
-            .thumbnail-container {
-                left: 120px;
-            }
+        @media (max-width: 768px) {
+        article {
+            flex-direction: column;
+            align-items: center;
+            margin-left: 0;
         }
 
-        @media (max-width: 800px) {
-            article {
-                margin-left: 20px;
-            }
-
-            img {
-                max-width: 100%;
-                margin-right: 0;
-            }
-
-            .thumbnail-container {
-                left: 10px;
-                margin-top: 15px;
-            }
+        img {
+            max-width: 100%;
+            margin-right: 0;
         }
 
-        @media (max-width: 500px) {
-            article {
-                margin-left: 0;
-            }
-
-            img {
-                max-width: 100%;
-                margin-right: 0;
-            }
-
-            .thumbnail-container {
-                justify-content: center;
-                left: 0;
-                margin-top: 15px;
-            }
-
-            .quantity input,
-            .quantity button {
-                width: 100%;
-                margin-right: 0;
-            }
-
-            button.buy-now-btn {
-                width: 100%;
-                margin-top: 15px;
-                margin-right: 0;
-                padding: 15px;
-                font-size: 1.5em;
-            }
-
-            #total-price {
-                margin-top: 15px;
-                margin-left: 0;
-            }
-
-            .free-shipping {
-                margin-right: 0;
-            }
+        .thumbnail-container {
+            justify-content: center;
+            left: 0;
+            margin-top: 15px;
         }
-    </style>
+
+        .thumbnail {
+            width: 60px;
+        }
+
+        .product-details {
+            margin-top: 15px;
+        }
+
+        h2 {
+            font-size: 2em;
+        }
+
+        .quantity input,
+        .quantity button {
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        button.buy-now-btn {
+            width: 100%;
+            margin-top: 15px;
+            padding: 15px;
+            font-size: 1.5em;
+        }
+
+        #total-price {
+            margin-top: 15px;
+            margin-left: 0;
+        }
+
+        .free-shipping {
+            margin-right: 0;
+        }
+    }
+</style>
 </head>
 
 <body>
@@ -293,7 +276,7 @@
                 <div class="product-info">
                     <p>
                         Transform any car into a fresh haven with our versatile car freshener! Universally compatible, it brings a burst of invigorating fragrance to elevate your drive. Upgrade your experience now! 🌬️🚗✨.</p>
-                    <p class="free-shipping">Free Shipping🚚</p>
+                    <p class="free-shipping">Free Shipping</p>
                 </div>
                 <div class="quantity">
                     <button class="btn minus-btn disabled" type="button" disabled="disabled">-</button>
@@ -316,6 +299,8 @@
             const thumbnailImage = document.querySelector('.thumbnail-container img:nth-child(' + (index + 1) + ')');
 
             const tempSrc = mainImage.src;
+            mainImage.src = thumbnailImage.src;
+            thumbnailImage.src = tempSrc;
         }
 
         var valueCount = 1;
