@@ -1,50 +1,306 @@
-<style>
-    /* Your existing styles */
+<!DOCTYPE html>
+<html lang="en">
 
-    @media (max-width: 768px) {
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Couture</title>
+    <style>
         body {
-            font-size: 14px; /* Adjust font size for smaller screens */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+
+        .slide {
+            background-color: #102a71;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            font-size: 3em;
+
+        }
+
+        section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            position: relative;
+            margin-top: -50px;
         }
 
         article {
-            margin-left: 20px; /* Adjust margin for better spacing on smaller screens */
+            background-color: #ffffff00;
+            padding: 100px;
+            margin-left: 20px; /* Adjusted margin for better spacing on smaller screens */
+            text-align: center;
+            max-width: unset;
+            position: center;
+            display: flex;
+            flex-direction: column; /* Adjusted direction for better stacking on smaller screens */
+            align-items: center; /* Adjusted alignment for better centering on smaller screens */
         }
 
         img {
             max-width: 100%; /* Make images responsive */
-            margin-right: 0; /* Remove right margin for images on smaller screens */
+            margin-bottom: 10px;
+            border-radius: 10px;
         }
 
         .thumbnail-container {
-            left: 0;
-            margin-bottom: 15px; /* Increase margin for better spacing on smaller screens */
+            display: flex;
+            justify-content: center; /* Center thumbnails on smaller screens */
+            align-items: center;
+            position: absolute;
+            bottom: 0;
+            margin-bottom: 15px; /* Increased margin for better spacing on smaller screens */
         }
 
         .thumbnail {
             width: 40px; /* Adjust thumbnail size for smaller screens */
+            height: auto;
+            margin: 0 4px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+            border-radius: 10px;
+        }
+
+        .thumbnail:hover {
+            transform: scale(1.1);
+        }
+
+        .product-details {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+        }
+
+        h2,
+        p {
+            margin: 5px;
         }
 
         h2 {
             font-size: 2.5em; /* Adjust heading size for smaller screens */
         }
 
-        .quantity input,
+        .product-info {
+            margin-top: 30px;
+        }
+
+        .quantity {
+            display: flex;
+            flex-direction: column; /* Adjusted direction for better stacking on smaller screens */
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .quantity input {
+            width: 80%; /* Adjust input width for smaller screens */
+            height: 25px;
+            text-align: center;
+            margin: 0 5px;
+            border-radius: 20px;
+            margin-bottom: 10px; /* Adjusted margin for better spacing on smaller screens */
+        }
+
         .quantity button {
-            width: 80%; /* Adjust input and button width for smaller screens */
+            padding: 10px 20px;
+            font-size: 2.9em;
+            border-radius: 10px;
+            background-color: #ffffff;
+            color: #102a71;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.5s cubic-bezier(0.47, 1.64, 0.41, 0.8);
+        }
+
+        .quantity button:hover {
+            background-color: #102a71;
+        }
+
+        .quantity button.minus-btn[disabled] {
+            background-color: #ffffff;
+            cursor: not-allowed;
         }
 
         button.buy-now-btn {
             width: 80%;
-            margin-right: 20px; /* Adjust margin for better spacing on smaller screens */
+            margin-top: 15px;
+            padding: 15px 20px;
+            font-size: 1.5em;
+            border-radius: 20px;
+            background-color: #102a71;
+            color: #f7f7f7;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.5s cubic-bezier(0.47, 1.64, 0.41, 0.8), color 0.5s cubic-bezier(0.47, 1.64, 0.41, 0.8);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        button.buy-now-btn:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #429E9D;
+            border-radius: 10rem;
+            z-index: -2;
+            transition: transform 0.5s cubic-bezier(0.47, 1.64, 0.41, 0.8);
+        }
+
+        button.buy-now-btn:before {
+            content: '';
+            position: left;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background-color: darken(rgb(31, 110, 130), 15%);
+            transition: all .3s;
+            border-radius: 10rem;
+            z-index: -1;
+        } 
+
+        button.buy-now-btn:hover {
+            color: #429E9D;
+        }
+
+        button.buy-now-btn:hover:before {
+            width: 100%;
+        }
+
+        button.buy-now-btn:hover:after {
+            transform: translateX(100%);
         }
 
         #total-price {
             margin-top: 15px;
-            margin-left: 0;
+            font-size: 1.5em;
+            color: #429E9D;
+            margin-left: auto;
         }
 
         .free-shipping {
-            margin-right: 0;
+            color: #429E9D;
+            font-weight: bold;
+            font-size: 1.2em;
+            text-align: center;
+            margin-top: 14px;
+            margin-right: 15px;
         }
-    }
-</style>
+
+        @media (max-width: 768px) {
+            img {
+                max-width: 200%; /* Adjust image size for smaller screens */
+            }
+
+            .thumbnail-container {
+                margin-top: 15px; /* Adjust margin for better spacing on smaller screens */
+            }
+
+            .thumbnail {
+                width: 60px; /* Adjust thumbnail size for smaller screens */
+            }
+
+            .quantity {
+                margin-left: 0; /* Adjust margin for better spacing on smaller screens */
+            }
+
+            button.buy-now-btn {
+                width: 60%;
+                margin-right: 0; /* Adjust margin for better spacing on smaller screens */
+            }
+
+            #total-price {
+                margin-left: 0;
+            }
+
+            .free-shipping {
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="slide">CAR COUTURE</div>
+    <section>
+        <article>
+            <img id="productImage" src="turbo 1.jpg" alt="Product Image">
+            <div class="thumbnail-container">
+                <img class="thumbnail" src="turbo.jpg" alt="Thumbnail 1" onclick="changeImage(0)">
+                <img class="thumbnail" src="turbo2.jpg" alt="Thumbnail 2" onclick="changeImage(1)">
+                <img class="thumbnail" src="turbo5.jpg" alt="Thumbnail 3" onclick="changeImage(2)">
+            </div>
+            <div class="product-details">
+                <h2>Turbo Car Freshener</h2>
+                <div class="product-info">
+                    <p>
+                        Transform any car into a fresh haven with our versatile car freshener! Universally compatible, it brings a burst of invigorating fragrance to elevate your drive. Upgrade your experience now! 🌬️🚗✨.</p>
+                    <p class="free-shipping">Free Shipping</p>
+                </div>
+                <div class="quantity">
+                    <button class="btn minus-btn disabled" type="button" disabled="disabled">-</button>
+                    <input type="text" id="quantity" value="1">
+                    <button class="btn plus-btn" type="button">+</button>
+                    <div id="total-price">Total Price: $18.95</div>
+                </div>
+                <button class="buy-now-btn"><h2>Buy Now</h2></button>
+            </div>
+        </article>
+    </section>
+
+    <script>
+        const thumbnails = ['turbo.jpg', 'turbo1.jpg'];
+        let currentThumbnailIndex = 0;
+
+        function changeImage(index) {
+            currentThumbnailIndex = index % thumbnails.length;
+            const mainImage = document.getElementById('productImage');
+            const thumbnailImage = document.querySelector('.thumbnail-container img:nth-child(' + (index + 1) + ')');
+
+            const tempSrc = mainImage.src;
+            mainImage.src = thumbnailImage.src;
+            thumbnailImage.src = tempSrc;
+        }
+
+        var valueCount = 1;
+
+        document.querySelector(".plus-btn").addEventListener("click", function () {
+            valueCount++;
+            document.getElementById("quantity").value = valueCount;
+            document.querySelector(".minus-btn").removeAttribute("disabled");
+            document.querySelector(".minus-btn").classList.remove("disabled");
+            priceTotal();
+        });
+
+        document.querySelector(".minus-btn").addEventListener("click", function () {
+            valueCount--;
+            document.getElementById("quantity").value = valueCount;
+            if (valueCount === 1) {
+                document.querySelector(".minus-btn").setAttribute("disabled", "disabled");
+            }
+            priceTotal();
+        });
+
+        function priceTotal() {
+            const pricePerItem = 18.95;
+            const quantity = parseInt(document.getElementById("quantity").value);
+            const totalPrice = pricePerItem * quantity;
+            document.getElementById("total-price").textContent = `Total Price: $${totalPrice.toFixed(2)}`;
+        }
+
+        priceTotal();
+    </script>
+</body>
+
+</html>
