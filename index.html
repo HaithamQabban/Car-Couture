@@ -205,19 +205,63 @@
             margin-right: 15px;
         }
 
-       @media only screen and (max-width: 400px) {
-    .card {
-        width: 90%;
-        height: 90%;
+      @media only screen and (max-width: 400px) {
+    article {
+        padding: 20px; /* Adjust padding for smaller screens */
+        margin-left: 20px; /* Adjust margin for smaller screens */
+        flex-direction: column; /* Change flex direction for smaller screens */
+    }
+
+    img {
+        max-width: 100%; /* Make images responsive */
+        margin-right: 0;
+    }
+
+    .thumbnail-container {
+        justify-content: center;
+        left: 0;
+        margin-top: 15px;
+    }
+
+    .thumbnail {
+        width: 60px;
+    }
+
+    .product-details {
+        margin-top: 15px;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+
+    .quantity input,
+    .quantity button {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    button.buy-now-btn {
+        width: 100%;
+        margin-top: 15px;
+        padding: 15px;
+        font-size: 1.5em;
+    }
+
+    #total-price {
+        margin-top: 15px;
+        margin-left: 0;
+    }
+
+    .free-shipping {
+        margin-right: 0;
     }
 }
 
 @media only screen and (max-width: 800px) {
-    .card {
-        width: 90%;
-        height: 90%;
-    }
+    /* Add additional styles if needed for screens up to 800px width */
 }
+
 
 
         img {
